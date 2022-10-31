@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-button (click)="perfil()">
+        <ion-icon slot="icon-only" name="person"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-searchbar
+    (search)="buscar($event.target.value)" 
+    placeholder="Buscar">
+</ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-item>
+      <ion-card-title>{{titulo}}</ion-card-title>
+      <ion-button slot="end" (click)="paginaanterior()">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+      <ion-button slot="end" (click)="paginasiguiente()">
+        <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+    </ion-card-header>
+    <ion-card-content>
+<ion-list>
+  <ion-item button *ngFor="let item of peliculas" [routerLink]="[item.id]">
+    <ion-thumbnail slot="start">
+      <img [src]="imagenurl + '/w92' + item.poster_path">
+    </ion-thumbnail>
+  <ion-label>{{ item.title }}
+    <p> {{ item.release_date | date:'y'}}</p>
+  </ion-label>
+  <ion-badge slot="end" color="tertiary">{{item.vote_average}}</ion-badge>
+</ion-item>
+</ion-list>
+</ion-card-content>
+</ion-card>
+</ion-content>

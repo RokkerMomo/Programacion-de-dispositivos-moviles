@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()"><ion-icon name="arrow-back"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-item>
+        <ion-thumbnail slot="start" style="--size:medium ;">
+          <img src="https://image.tmdb.org/t/p/w200{{resultado?.avatar.tmdb.avatar_path}}" alt="">
+        </ion-thumbnail>
+        <ion-card-title>{{resultado?.username}}</ion-card-title>
+      </ion-item>
+    
+    </ion-card-header>
+  
+    <ion-card-content>
+      Datos
+      <ion-item>
+        <ion-icon slot="start" name="person"></ion-icon><ion-label>{{resultado?.name}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon slot="start" name="language"></ion-icon><ion-label>{{resultado?.iso_639_1}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon slot="start" name="globe"></ion-icon><ion-label>{{resultado?.iso_3166_1}}</ion-label>
+      </ion-item>
+
+      
+      
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-item>
+      <ion-card-title>Peliculas Favoritas</ion-card-title>
+    </ion-item>
+    </ion-card-header>
+    <ion-card-content>
+<ion-list>
+  <ion-item button *ngFor="let item of peliculas">
+    <ion-thumbnail slot="start">
+      <img [src]="imagenurl + '/w92' + item.poster_path">
+    </ion-thumbnail>
+  <ion-label>{{ item.title }}
+    <p> {{ item.release_date | date:'y'}}</p>
+  </ion-label>
+  <ion-badge slot="end" color="tertiary">{{item.vote_average}}</ion-badge>
+</ion-item>
+</ion-list>
+</ion-card-content>
+</ion-card>
+</ion-content>

@@ -1,0 +1,16 @@
+ion-thumbnail {
+    min-width: 5rem;    
+    min-height: 5rem;
+    img {
+        max-width: 5rem;    
+        min-width: 5rem;
+    }
+}
+
+ion-content{
+    --background: none;
+  background-image: url('https://static.vecteezy.com/system/resources/previews/002/444/212/original/abstract-home-cinema-background-vector.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover
+}

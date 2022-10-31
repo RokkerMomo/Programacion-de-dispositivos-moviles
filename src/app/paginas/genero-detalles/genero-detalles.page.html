@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/generos"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ pelicula?.title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <img size="full" [src]="imagenurl + '/w400' + pelicula?.poster_path">
+    <ion-card-header>
+      <ion-card-title>{{pelicula?.title}}</ion-card-title> 
+      <ion-card-subtitle>{{pelicula?.tagline}}</ion-card-subtitle>
+      <ion-text color="tertiary">
+        <span *ngFor="let g of pelicula?.genres; let isLast = last">
+          {{g.name}} {{!isLast ? '.' : '' }}
+        </span>
+      </ion-text>
+      <ion-button (click)="abrirtab(tailer?.results[0].key)">
+        <ion-icon slot="start" name="logo-youtube"></ion-icon>Ver Trailer
+      </ion-button>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-text>{{pelicula?.overview}}</ion-text>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-item>
+        <ion-avatar slot="start">
+          <img src="https://image.tmdb.org/t/p/w200{{review?.results[0].author_details.avatar_path}}" alt="avatar">
+        </ion-avatar>
+      <ion-card-title>Critica de {{review?.results[0].author}}</ion-card-title>
+      <ion-badge color="warning" slot="end"> <ion-icon  name="star"></ion-icon> {{review?.results[0].author_details.rating}}  </ion-badge>
+    </ion-item>
+      <ion-card-subtitle>Critica escrita por {{review?.results[0].author}} el {{review?.results[0].created_at | date:'mediumDate'}}</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      {{review?.results[0].content}}
+    </ion-card-content>
+  </ion-card>
+</ion-content>
