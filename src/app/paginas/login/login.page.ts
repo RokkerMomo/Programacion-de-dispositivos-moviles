@@ -19,7 +19,7 @@ import { error } from 'console';
 export class LoginPage implements OnInit {
   
   
-  constructor(private router:Router, private peliculasService:PeliculasService,private alertController: AlertController, private loadingCtrl: LoadingController) { }
+  constructor(private router:Router,private iab: InAppBrowser, private peliculasService:PeliculasService,private alertController: AlertController, private loadingCtrl: LoadingController) { }
   
   variable= null;
 
@@ -51,6 +51,10 @@ export class LoginPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  abrirtab(){
+    this.iab.create(`https://www.themoviedb.org/signup`)
   }
 
   invitado(){

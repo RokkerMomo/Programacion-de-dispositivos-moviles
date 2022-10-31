@@ -25,12 +25,12 @@ export class PeliculasService {
   }
 
   buscarNombre(texto,page): Observable<resultados>{
-    return this.http.get<resultados>(`https://api.themoviedb.org/3/search/movie?api_key=${environment.ApiKey}&query=${texto}&language=es&page=${page}`);
+    return this.http.get<resultados>(`https://api.themoviedb.org/3/search/movie?api_key=${environment.ApiKey}&query=${texto}&language=es&page=${page}&with_result=1`);
 
   }
 
   genero(page,genero): Observable<resultados>{
-    return this.http.get<resultados>(`https://api.themoviedb.org/3/discover/movie?api_key=${environment.ApiKey}&language=es&page=${page}&with_genres=${genero}`);
+    return this.http.get<resultados>(`https://api.themoviedb.org/3/discover/movie?api_key=${environment.ApiKey}&language=es&page=${page}&with_genres=${genero}&results=1`);
 
   }
 
@@ -71,8 +71,8 @@ export class PeliculasService {
   }
 
 
-  agregarfavorito(){
-    return this.http.get(`https://api.themoviedb.org/3/account/{account_id}/favorite?api_key=${environment.ApiKey}`)
+  agregarfavorito(cuenta,idsesion,pelicula){
+    return this.http.post(`https://api.themoviedb.org/3/account/${cuenta}/favorite?api_key=${environment.ApiKey}&session_id=${idsesion}`,pelicula)
   }
 
 

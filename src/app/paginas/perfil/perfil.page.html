@@ -57,4 +57,31 @@
 </ion-list>
 </ion-card-content>
 </ion-card>
+
+<ion-card>
+  <ion-card-header>
+    <ion-item>  <ion-label>Añadir A Favoritos</ion-label></ion-item>
+
+    <ion-item>
+      <ion-searchbar
+      (search)="buscar($event.target.value)" 
+      placeholder="Buscar">
+  </ion-searchbar>
+  </ion-item>
+  </ion-card-header>
+  <ion-card-content>
+
+<ion-item button class="{{invi}}" (click)="favorito()">
+  <ion-thumbnail slot="start">
+    <img [src]="imagenurl + '/w92' + favoritos[0]?.poster_path">
+  </ion-thumbnail>
+<ion-label>{{favoritos[0]?.original_title}}
+  <p> {{ favoritos[0]?.release_date | date:'y'}}</p>
+</ion-label>
+<ion-badge color="danger" slot="end"> <ion-icon  name="heart"></ion-icon></ion-badge>
+</ion-item>
+</ion-card-content>
+</ion-card>
+
+
 </ion-content>

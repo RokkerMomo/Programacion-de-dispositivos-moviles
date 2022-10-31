@@ -1,3 +1,4 @@
+import { NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
@@ -13,7 +14,9 @@ export class PerfilPage implements OnInit {
 
   resultado=null;
   peliculas = [];
+  favoritos = [];
   paginaActual= 1;
+  invi='ion-hide'
   imagenurl = 'http://image.tmdb.org/t/p';
   constructor(private peliculasservice:PeliculasService, private route:ActivatedRoute,private loadingCtrl: LoadingController,private router: Router) { }
 
@@ -46,6 +49,23 @@ export class PerfilPage implements OnInit {
     })
   }
 
+  buscar(texto){
+    if(texto==""){
+      this.favoritos=[];
+      this.ngOnInit();
+      NgFor 
+    }else{
+      this.invi="";
+      this.paginaActual=1;
+    console.log(this.paginaActual);
+    this.favoritos=[];
+    this.peliculasservice.buscarNombre(texto,this.paginaActual).subscribe((res)=>{
+      this.favoritos = [...this.favoritos, ...res.results];
+      console.log(this.favoritos[0].id)
+      console.log(res);
+    })
+  }}
+
   volver(){
     const user = this.route.snapshot.queryParamMap.get('user');
     const params: NavigationExtras = {
@@ -54,6 +74,22 @@ export class PerfilPage implements OnInit {
     }
     console.log(user);
     this.router.navigate(['populares'],params);
+  }
+
+  favorito(){
+    const user = this.route.snapshot.queryParamMap.get('user');
+    const pelicula={
+      "media_type": "movie",
+      "media_id": "",
+      "favorite": true
+    }
+    pelicula.media_id=this.favoritos[0].id
+    console.log(pelicula);
+    this.peliculasservice.agregarfavorito(this.resultado.id,user,pelicula).subscribe((res)=>{
+      this.peliculas = [];
+      this.ngOnInit();
+      console.log(res);
+    })
   }
 
 }

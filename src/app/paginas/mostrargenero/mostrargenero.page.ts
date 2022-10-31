@@ -56,6 +56,19 @@ export class MostrargeneroPage implements OnInit {
         case "9648":
           this.titulo="Misterio"
         break;
+        case "10749":
+          this.titulo="Romance"
+        break;
+        case "878":
+          this.titulo="SienciaFiccion"
+        break;
+        case "53":
+          this.titulo="Suspenso"
+        break;
+        case "10752":
+          this.titulo="Guerra"
+        break;
+        
     
       default:
         break;
