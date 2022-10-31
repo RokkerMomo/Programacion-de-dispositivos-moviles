@@ -11,6 +11,9 @@ import { environment } from 'src/environments/environment.prod';
   styleUrls: ['./populares.page.scss'],
 })
 export class PopularesPage implements OnInit {
+  parametros: NavigationExtras = {
+    queryParams:{user:""}
+  }
   peliculas = [];
   paginaActual = 1;
   imagenurl = 'http://image.tmdb.org/t/p';
@@ -20,8 +23,19 @@ export class PopularesPage implements OnInit {
   constructor(private peliculasService: PeliculasService, private loadingCtrl: LoadingController, private route: ActivatedRoute,private router: Router) { }
 
   ngOnInit() {
+    const user = this.route.snapshot.queryParamMap.get('user');
+    const params: NavigationExtras = {
+      queryParams:{user:user
+      },
+    }
+    this.parametros=params;
+    console.log(params);
+    console.log(this.parametros);
    this.cargarPeliculas();
   }
+
+
+  
 
   async cargarPeliculas(){
     const loading = await this.loadingCtrl.create({

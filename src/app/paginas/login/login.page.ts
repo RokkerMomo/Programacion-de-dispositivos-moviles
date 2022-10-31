@@ -53,9 +53,8 @@ export class LoginPage implements OnInit {
     await alert.present();
   }
 
-  ok(){
-    console.log(this.usuario);
-    console.log(this.pass);
+  invitado(){
+    this.router.navigate(['/populares']);
   }
   async aceptar(){
 

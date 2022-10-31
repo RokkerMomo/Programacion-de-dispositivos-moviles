@@ -35,9 +35,11 @@
   <ion-label>{{ item.title }}
     <p> {{ item.release_date | date:'y'}}</p>
   </ion-label>
-  <ion-badge slot="end" color="tertiary">{{item.vote_average}}</ion-badge>
+  <ion-badge color="warning" slot="end"> <ion-icon  name="star"></ion-icon> {{item.vote_average}}  </ion-badge>
 </ion-item>
 </ion-list>
 </ion-card-content>
 </ion-card>
 </ion-content>
+
+

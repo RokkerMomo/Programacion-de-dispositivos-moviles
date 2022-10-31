@@ -71,4 +71,9 @@ export class PeliculasService {
   }
 
 
+  agregarfavorito(){
+    return this.http.get(`https://api.themoviedb.org/3/account/{account_id}/favorite?api_key=${environment.ApiKey}`)
+  }
+
+
 }
